@@ -6,6 +6,9 @@ import br.com.vitor.controlegastos.service.GastoService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 public class App {
     public static void main(String[] args) {
@@ -30,9 +33,17 @@ public class App {
                     double valor = scanner.nextDouble();
                     scanner.nextLine();
 
-                    System.out.print("Digite a data (AAAA-MM-DD): ");
+                    System.out.print("Digite a data (dd/MM/yyyy): ");
                     String dataStr = scanner.nextLine();
-                    LocalDate data = LocalDate.parse(dataStr);
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate data = null;
+                    try {
+                        data = LocalDate.parse(dataStr, formatter);
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Formato de data inválido. Use dd/MM/yyyy.");
+                        break;
+                    }
 
                     System.out.print("Digite a categoria: ");
                     String categoria = scanner.nextLine();
