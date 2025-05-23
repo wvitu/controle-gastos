@@ -5,3 +5,4 @@ public class App {
         System.out.println("Sistema de Controle de Gastos iniciado.");
     }
 }
+// iniciado projeto
